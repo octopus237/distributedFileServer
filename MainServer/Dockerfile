@@ -1,0 +1,26 @@
+FROM python:3
+
+WORKDIR /app
+
+COPY mainServer.py .
+
+RUN pip install pandas \
+    rpyc 
+
+ENV DEFAULT_HOST=127.0.0.1
+ENV DEFAULT_PORT=8080
+
+ENV NODE1_IP=127.0.0.1
+ENV NODE1_PORT=4444
+ENV NODE1_PATH=./node1
+
+ENV NODE2_IP=127.0.0.1
+ENV NODE2_PORT=4445
+ENV NODE2_PATH=./node2
+
+
+EXPOSE ${DEFAULT_PORT}
+
+CMD ["python3", "mainServer.py"]
+
+
